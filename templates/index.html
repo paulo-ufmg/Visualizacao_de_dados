@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex"/> <!-- index,follow"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Visualização de Dados">
+    <meta property="og:description" content="Dengue">
+    <meta id="icon" property="og:image" content="https://atende.dev.br/ufmg/logo.png">
+    <meta property="og:url" content="https://dengue.onrender.com">
+    <title>Dengue Brasil</title>
+
+        <!-- Bootstrap css -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/compile.css') }}">
+
+  </head>
+    <body> <!-- class="bg-light text-dark"-->
+        <div class="vertical-nav bg-white" id="sidebar">
+          <div class="py-4 px-3 mb-4 bg-light">
+            <div id="logo" class="media d-flex align-items-center"><img src="{{ url_for('static', filename='img/logo.png') }}" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+              <div class="media-body">
+                <h4 class="m-0">Dengue Brasil</h4>
+                <p class="font-weight-light text-muted mb-0">Visualização de Dados</p>
+              </div>
+            </div>
+          </div>
+
+          <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">Índice</p>
+
+          <ul class="nav flex-column bg-white mb-0">
+            <li class="nav-item">
+              <a href="#apresentacao" class="nav-link text-dark font-italic bg-light">
+                        <i class="fa fa-align-left mr-3 text-primary fa-fw"></i>
+                        Apresentação
+                    </a>
+            </li>
+            <li class="nav-item">  
+              <a href="#motivacao" class="nav-link text-dark font-italic">
+                        <i class="fa fa-th mr-3 text-primary fa-fw"></i>
+                        Motivaçao
+                    </a>
+            </li>
+            <li class="nav-item">
+              <a href="#problema" class="nav-link text-dark font-italic">
+                        <i class="fa fa-table mr-3 text-primary fa-fw"></i>
+                        Problema
+                    </a>
+            </li>
+            <li class="nav-item">
+              <a href="#dataset" class="nav-link text-dark font-italic">
+                        <i class="fa fa-tasks mr-3 text-primary fa-fw"></i>
+                        DataSet
+                    </a>
+            </li>
+
+          </ul>
+
+          <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">Gráficos</p>
+
+          <ul class="nav flex-column bg-white mb-0">
+            <li class="nav-item">
+              <a href="#grafico1" class="nav-link text-dark font-italic">
+                        <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
+                        Gráfico 1
+                    </a>
+            </li>
+            <li class="nav-item">
+              <a href="#grafico2" class="nav-link text-dark font-italic">
+                        <i class="fa fa-eye mr-3 text-primary fa-fw"></i>
+                        Gráfico 2
+                    </a>
+            </li>
+            <li class="nav-item">
+              <a href="#grafico3" class="nav-link text-dark font-italic">
+                        <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+                        Gráfico 3
+                    </a>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- End vertical navbar -->
+
+
+        <!-- Page content holder -->
+        <div class="page-content p-5" id="content">
+          <!-- Toggle button -->
+          <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold"></small></button>
+
+          <section id="apresentacao"  class="section">
+            <!-- Demo content -->
+            <!-- Autores-->
+            <div id="autores" >
+              <div class="d-flex justify-content-end">
+                
+                  <div class="media d-flex align-items-center"><img src="{{ url_for('static', filename='img/larissa.jpg') }}" alt="..." width="64" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+                    <div class="media-body">
+                      <h4 class="m-0">Larissa Pinheiro</h4>
+                      <p class="font-weight-light text-muted mb-0">lpinheiro00@ufmg.br</p>
+                    </div>
+                  </div>
+                
+
+                
+                  <div class="media d-flex align-items-center"><img src="{{ url_for('static', filename='img/_paulo.png') }}" alt="..." width="64" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+                    <div class="media-body">
+                      <h4 class="m-0">Paulo</h4>
+                      <p class="font-weight-light text-muted mb-0">paulo-rocha@ufmg.br</p>
+                    </div>
+                  </div>    
+                
+                
+                  <div class="media d-flex align-items-center"><img src="{{ url_for('static', filename='img/user.png') }}" alt="..." width="64" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+                    <div class="media-body">
+                      <h4 class="m-0">user</h4>
+                      <p class="font-weight-light text-muted mb-0">user@ufmg.br</p>
+                    </div>
+                  </div>      
+                
+              </div>  
+            </div>
+                
+
+
+
+            <h2 class="display-4">Visualização de Dados - Dengue Brasil</h2>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="Procurar" aria-label="Recipient's username" aria-describedby="button-addon2">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="button" id="button-addon2"><i class="fa fa-search active" aria-hidden="true" style="color:white"></i></button>
+              </div>
+            </div>
+                      <br/><br/><br/>   
+            
+            <p class=" mb-0 mr-10">Este é o resultado de um trabalho dos alunos da disciplina de Ambientes de Computação da Pós Graduação do Departamento de Ciência da Computação da UFMG, 2024.</p>
+            <p class="">Código fonte: <a href="https://github.com/paulo-ufmg/Bioclass" class="text-primary" target="_blank">
+                <u>Github</u></a>
+            </p>
+            <div class="separator"></div>
+            <div class="row mr-10">
+              <div class="col-xs-12">
+                <p class=""></p>
+
+                <h5>teste</h5>
+                <p class=""></p>
+
+                <div class="bg-white p-5 rounded my-5 shadow-sm">
+                  <h5>Conclusão</h5>
+                  <p class=" font-italic mb-0"></p>
+                </div>
+                <p class="">
+                </p>
+              </div>
+            </div>
+          </section>  
+
+        
+          <section id="motivacao"  class="section"><h2>Estrutura</h2>
+            <p>A biblioteca Bioclass possui duas classes:</p>
+
+            <div class="container">
+              <div class="row">
+                  <div class="col-12 col-md-6">
+                      <div class="p-3 border bg-light">
+                        <img src="{{ url_for('static', filename='img/bioprof_logo.png') }}" class="img-fluid float-left mr-3" alt="Example Icon">
+                        
+                  </div>
+                  <div class="col-12 col-md-6">
+                      <div class="p-3 border bg-light">
+                        <img src="{{ url_for('static', filename='img/encadear_logo.png') }}" class="img-fluid  float-left mr-3" alt="Example Icon">
+                  </div>
+              </div>
+          </div>
+            
+            
+
+            
+          
+          </section>
+          <section id="problema" class="section mb-5"><h2>Atributos</h2>
+            <img src="{{ url_for('static', filename='img/bioprof_logo.png') }}" class="img-fluid  mr-3 mb-3" width="360" alt="Example Icon">
+            <div class="row">
+
+            </div>
+          </section>
+
+          <section id="dataset"   class="section"><h2>Métodos da Classe</h2>
+          </section>
+
+
+
+          <section id="grafico1"    class="section"><h2>Encapsulamento</h2>
+            
+            <h1>Gráfico Interativo com Plotly</h1>
+            <div>{% include 'grafico1.html' %}</div>
+          </section>
+          <section id="grafico2"    class="section"><h2>Abstração</h2>
+            <p>A abstração é o processo de simplificação de sistemas complexos ao ocultar os detalhes desnecessários e expor apenas as características essenciais. Em POO, isso é realizado através de classes e objetos, onde uma classe define um modelo ou conceito geral e um objeto é uma instância específica dessa classe. A abstração permite que os desenvolvedores lidem com altos níveis de complexidade, focando-se em aspectos relevantes do problema sendo resolvido.</p>
+          </section>
+          <section id="grafico3"    class="section"><h2>Herança</h2>
+            <p>A herança é um mecanismo que permite a criação de novas classes a partir de classes existentes, promovendo o reuso de código. Uma classe derivada (ou subclasse) herda os atributos e métodos da classe base (ou superclasse), podendo também adicionar novos atributos e métodos ou sobrescrever os métodos existentes. Isso promove a reutilização e a extensão de funcionalidades sem a necessidade de duplicação de código.</p>
+          </section>
+          
+
+        </div>
+        <!-- End demo content -->
+<!-- Estrutura da Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-primary" id="exampleModalLabel"><img src="{{ url_for('static', filename='img/pythonlogo.png') }}" width="32" class="img-fluid" alt="Example Icon">Compilador Python <span class="text-info" id="nome_metodo"></span></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="compilador" data-code="">
+          {% include 'help_bar_code.html' %}
+          <textarea id="ide" placeholder="# Insira seu código aqui" spellcheck="false">from Bioclass import Bioprof</textarea><br>
+          <button id="run" type="button" title="Executa código Python">Executar</button>
+          <button id="clear" type="button" title="Apaga o terminal de resultado">Limpar</button>
+          <div id="result">
+            <span class="text-success"><pre>Resultado&raquo;</pre></span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <!-- <button type="button" class="btn btn-primary">Salvar mudanças</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Estrutura da Modal bio-->
+<div class="modal fade" id="bioModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-primary" id="exampleModalLabel"><img src="{{ url_for('static', filename='img/biologo.png') }}" width="32" class="img-fluid" alt="Example Icon"> Biologia - O que é?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="bio" data-code="">
+          <h5>O que é?</h5>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <!-- <button type="button" class="btn btn-primary">Salvar mudanças</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+<div id="conceito" style="display:none">
+  <div class="get_seqs">
+    <p>Em Bioinformática, uma sequência refere-se à ordem linear de nucleotídeos em uma molécula de DNA ou RNA, ou de aminoácidos em uma proteína.</p>
+    <ul>
+      <li><span class="text-primary">DNA (Ácido Desoxirribonucleico): </span><br>
+        <p>Consiste em uma sequência de nucleotídeos representados A (adenina), T (timina), C (citosina) e G (guanina).</p>
+        <span>Exemplo:</span><br>
+        <strong>ATGCGTACGTAGCTAG</strong>
+      </li>
+      <li><span class="text-primary">RNA (Ácido Ribonucleico): </span><br>
+        <p>Semelhante ao DNA, mas com uracila (U) substituindo a timina (T).</p> 
+        <span>Exemplo:</span><br>
+        <strong>AUGCGUACGUAGCUAG</strong>
+      </li>
+      <li><span class="text-primary">Proteínas:</span>
+        <p>Compostas por cadeias de aminoácidos, que são representadas por letras únicas. Existem 20 aminoácidos comumente encontrados nas proteínas, como alanina (A), cisteína (C), glicina (G), etc.</p>
+        <span>Exemplo:</span><br>
+        <strong>MKTIIALSYIFCLVFA</strong>
+      </li>
+    </ul>
+  </div>
+  <div class="adiciona_seq">
+    <p>Em Bioinformática, muitas operações e análises requerem a comparação ou o processamento de mais de uma sequências biológicas (como DNA, RNA ou proteínas). Segue algumas exemplos:</p>
+    <ul>
+        <li>Alinhamento de Sequências</li>
+        <li>Busca de Similaridade</li>
+        <li>Comparação de Genomas</li>
+        <li>Análise Filogenética</li>
+        <li>Detecção de Motivos</li>
+        <li>Análise de Expressão Gênica</li>
+        <li>Análise de Variantes Genéticas</li>
+        <li>Anotação de Função de Proteína</li>
+        <li>Montagem de Genomas</li>
+    </ul>   
+    <p>Para execução detas tarefas, o objeto permite o cadastro de várias sequênas, sendo pelo método <b><i>adiciona_seq()</i></b> ou por leitura de arquivo de sequências.</p>
+  </div>
+  <div class="leiaArquivoFasta">
+    <p>Um arquivo FASTA é um formato de arquivo amplamente utilizado para armazenar sequências biológicas, como sequências de DNA, RNA ou proteínas. O formato é simples e humanamente legível, facilitando a manipulação e análise de dados de sequências. Segue o layout de um arquivo FASTA:</p>
+    <ul>
+      <li>Linha de cabeçalho: começa com o sinal ">", seguida por uma descrição opcional ou identificador único da sequência.<br>
+        <small>A linha de cabeçalho pode conter informações adicionais sobre a sequência, como nome do gene, espécie e outras anotações</small><br>
+      </li>
+      <li>A sequência biológica vem imediatamente após a linha de cabeçalho. Ela pode ser dividida em várias linhas para facilitar a leitura, mas não deve conter espaços ou caracteres que não façam parte da sequência.
+      </li>
+    </ul>
+    <span>Exemplo:</span><br>
+    <strong>>seq1 Homo sapiens hemoglobin subunit alpha<br>ATGGTGCTTCTCCTGCTGCTGCTGCTGCTGCTGCTG</strong>
+  </div>
+  <div class="">
+    <p></p>
+
+  </div>
+  <div class="get_tamanho_sequencia">
+    <p>Os tamanhos dos genomas variam enormemente. Organismos mais simples, como vírus e bactérias, tendem a ter genomas muito menores em comparação com organismos mais complexos, como plantas e animais. Além disso, não há uma relação direta entre a complexidade de um organismo e o tamanho do seu genoma (um fenômeno conhecido como o "paradoxo do valor C"). Por exemplo, algumas plantas têm genomas muito maiores do que os humanos.</p>
+			<p>- Já o tamanho de uma sequência é altamente dependente do contexto biológico e da aplicação em questão e podem variar de algumas poucas bases até vários milhões ou bilhões de bases.</p>
+			<b>Exemplos de sequências:</b>
+      <ul>
+        <li>Sequências Genômicas</li>
+        <li>Fragmentos de Sequênciamento</li>
+        <li>Sequências de RNA</li>
+        <li>Sequências sintéticas*</li>
+        <li>Sequências de Exons e Introns</li>
+    </ul>
+    <p>*Oligonucleotídeos: São sequências de DNA ou RNA sintéticas usadas em várias aplicações laboratoriais e geralmente têm de 15 a 100 nucleotídeos.</p>
+
+  </div>
+  <!-- -------------------------------------------  -->
+  <div class="transc_dna2rna">
+			<p>A transcrição de uma sequência de DNA envolve uma série de eventos biológicos que convertem a informação genética de um gene em uma molécula de RNA mensageiro (mRNA). Este processo é realizado pelas células para expressar genes e produzir proteínas necessárias para várias funções celulares.</p>
+			<b>Componentes Principais:</b>
+      <ul>
+        <li><b>DNA</b> -<small> A molécula que contém a informação genética.</small>:</li>
+        <li><b>RNA Polimerase</b> -<small> A enzima responsável pela síntese do RNA.</small></li>
+        <li><b>Promotores</b> -<small> Sequências de DNA que sinalizam o início de um gene.</small></li> 
+        <li><b>Terminadores</b> -<small> Sequências de DNA que sinalizam o fim do gene.</small></li>
+        <li><b>Fatores de Transcrição</b> -<small> Proteínas que auxiliam na ligação da RNA polimerase ao DNA.</small></li>
+    </ul>
+    <p>A complementaridade de bases garante que a sequência de RNA seja uma cópia precisa da sequência de DNA, com algumas exceções específicas:</p>
+      <ul>
+       <li>Adenina (<b>A</b>) no DNA pareia com uracila (<b>U</b>) no RNA.</li>
+       <li>Timina (<b>T</b>) no DNA pareia com adenina (<b>A</b>) no RNA.</li>
+       <li>Citosina (<b>C</b>) no DNA pareia com guanina (<b>G</b>) no RNA.</li>
+       <li>Guanina (<b>G</b>) no DNA pareia com citosina (<b>C</b>) no RNA.</li>
+      </ul>
+    <p>O mRNA maduro é então transportado do núcleo para o citoplasma (em eucariotos) onde será traduzido em uma sequência de aminoácidos para formar uma proteína funcional. A transcrição é um processo fundamental que garante que a informação genética contida no DNA seja fielmente transferida e utilizada para a síntese de proteínas essenciais à vida.</p>
+  </div>
+  
+  <!-- -------------------------------------------  -->
+  <div class="reverso_complementar">
+    <p>O reverso complementar de uma sequência de DNA é crucial para muitas aplicações em biologia molecular e genética. Ele garante que a sequência de DNA possa ser corretamente lida e manipulada em diversas técnicas laboratoriais. Compreender como determinar e utilizar sequências reverso complementares é essencial para a pesquisa e prática na área das ciências da vida. Um exemplo é a técnica PCR (Reação em Cadeia da Polimerase) e clonagem de genes, dependem de sequências reverso complementares.</p>
+      <p>Para obter o reverso complementar segue dois passos:</p>
+      <ul>
+        <li>Sequência exemplo: [<strong>ATTACGGC</strong>]</li>
+        <li><b>Passo1:</b> Encontrar a sequência complementar do DNA = [<strong>TAATGCCG</strong>]</li>
+        <li><b>Passo2:</b> Inverter essa sequência complementar = [<strong>GCCGTAAT</strong>]</p></li>
+    </ul>
+  </div>
+  <!-- -------------------------------------------  -->
+    <div class="rna2proteina">
+      <p>A tradução de uma sequência de DNA é o processo pelo qual a informação codificada no mRNA (RNA mensageiro) é utilizada para sintetizar uma proteína, as instruções genéticas contidas no DNA são convertidas em uma sequência de aminoácidos que forma uma proteína funcional.</p>
+        <p>Uma sequência de três nucleotídeos no RNA mensageiro (mRNA) (<b>códon</b>) especifica um aminoácido particular ou uma sinalização para iniciar ou terminar a síntese proteica.</p>
+        <b>Função dos Códons na Tradução:</b>
+        <ul>
+          <li><b>Iniciação:</b> O códon de iniciação, geralmente <b>AUG</b>, sinaliza o início da tradução e também codifica o aminoácido metionina.</li>
+          <li><b>Elongação:</b> Durante a elongação, cada códon na sequência de mRNA especifica a adição de um aminoácido à cadeia polipeptídica crescente. O ribossomo lê os códons um de cada vez e, com a ajuda de tRNAs (RNA de transferência), adiciona os aminoácidos correspondentes.</li>
+          <li><b>Término:</b> Códons de terminação (<b>UAA</b>, <b>UAG</b> e <b>UGA</b>) sinalizam o final da tradução, indicando ao ribossomo que a síntese da proteína deve ser encerrada.</li>
+      </ul>
+      <p>As proteínas desempenham funções vitais nas células, incluindo enzimáticas, estruturais, regulatórias e muitas outras, sustentando a vida e a função celular.</p>
+    </div>
+    <!-- -------------------------------------------  -->
+      <div class="dH">
+        <p>A distância de Hamming é uma medida da diferença entre duas sequências de igual comprimento. Ela é usada para quantificar o número de posições em que os símbolos correspondentes são diferentes entre as duas sequências. Em termos de biologia molecular, a distância de Hamming é frequentemente utilizada para comparar sequências de DNA, RNA ou proteínas.</p>
+          
+          <b>Utilização:</b>
+          <ul>
+            <li><strong>Análise de Mutação</strong></li>
+            <li><strong>Comparação de Sequências Genômicas</strong></li>
+            <li><strong>Avaliação de Sequenciamento</strong></li>
+            <li><strong>Identificação de Polimorfismos de Nucleotídeo Único (SNPs)</strong></li>
+        </ul>
+        <p>A distância de Hamming é uma medida simples de diferença entre sequências, mas pode não refletir a complexidade de todas as possíveis mutações ou variações.</p><p>É importante garantir que as duas sequências sendo comparadas tenham o mesmo comprimento, já que a distância de Hamming não é definida para sequências de comprimentos diferentes.</p>
+      </div>
+<!-- -------------------------------------------  -->
+<div class="nome_do_metodo">
+  <p></p>
+    <p></p>
+    <b>Exemplo:</b>
+    <ul>
+      <li></li>
+      <li></li>
+  </ul>
+  <p>Conclusão.</p>
+</div>
+<!-- -------------------------------------------  -->
+
+
+
+
+
+</div>
+        
+</body>
+<script language="javascript" type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+<script language="javascript" type="text/javascript" src="{{ url_for('static', filename='js/ajuda.js') }}"></script>
+<script language="javascript" type="text/javascript" src="{{ url_for('static', filename='js/compile.js') }}"></script>
+
+<script language="javascript" type="text/javascript"src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<script language="javascript" type="text/javascript" src=""></script>
+<script language="javascript" type="text/javascript" src=""></script>
+<script language="javascript" type="text/javascript" src=""></script>
+
+</html>
+
+        
+<script>
+//exibir o video da gifImage na gif-container
+var start = false
+document.getElementById('gif-container').addEventListener('click', function() {
+  const gifImage = document.getElementById('gifImage');
+    gifImage.src = (!start) ? "{{ url_for('static', filename='img/output.gif') }}" : "{{ url_for('static', filename='img/apresenta_estrutura.png') }}";
+  start = !start;
+});  
+
+
+</script>         
