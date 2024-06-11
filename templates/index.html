@@ -231,13 +231,54 @@
 
 
 
-          <section id="grafico1"    class="section">
+          <section id="grafico1" class="section">
             <h2>Casos de Dengue</h2>
-            <div>{% include 'grafico1.html' %}</div>
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-secondary active" id="btn1">Brasil</button>
+                <button type="button" class="btn btn-secondary"        id="btn2">Sudeste</button>
+                <button type="button" class="btn btn-secondary"        id="btn3">Barra Sobreposta</button>
+            </div>
+            
+
+            <div class="row">
+              <div id="content1" class="content-div active">
+                <div>{% include 'brasil.html' %}</div>
+              </div>  
+              <div id="content2" class="content-div">
+                <div>{% include 'sudeste.html' %}</div>
+              </div>  
+              <div id="content3" class="content-div">
+                <div>{% include 'bar-sudeste.html' %}</div>
+              </div>  
+            </div>  
           </section>
 
           <section id="grafico2"    class="section">
-            <h2>Gráfico de Casos x Precipitação e Temperatura </h2>
+            <h2>Gráfico Precipitação e Temperatura x Casos </h2>
+  
+            <div class="row">
+                <div class="col-12 col-md-6">
+                      <h4>Preciptação</h4>
+                      <div class="p-3 border bg-light">
+                        {% include 'sudeste(p).html' %}
+                      </div>  
+                </div>      
+                <div class="col-12 col-md-6">
+                        <h2>Temperatura</h2> 
+                        <div class="p-3 border bg-light">
+                          {% include 'sudeste(t).html' %}
+                        </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                  <h2>Casos de Dengue</h2>
+                  <div class="p-3 border bg-light">
+                    {% include 'grafico1.html' %}
+                  </div>
+                </div>
+            </div>
+
           </section>
 
           <section id="grafico3"    class="section">
@@ -259,7 +300,6 @@
       </div>
       <div class="modal-body">
         <div id="compilador" data-code="">
-          {% include 'help_bar_code.html' %}
           <textarea id="ide" placeholder="# Insira seu código aqui" spellcheck="false">from Bioclass import Bioprof</textarea><br>
           <button id="run" type="button" title="Executa código Python">Executar</button>
           <button id="clear" type="button" title="Apaga o terminal de resultado">Limpar</button>
@@ -300,29 +340,25 @@
 </div>
 
         
-</body>
-<script language="javascript" type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
-<script language="javascript" type="text/javascript" src="{{ url_for('static', filename='js/ajuda.js') }}"></script>
-<script language="javascript" type="text/javascript" src="{{ url_for('static', filename='js/compile.js') }}"></script>
+  </body>
+  <script language="javascript" type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+  <script language="javascript" type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
 
-<script language="javascript" type="text/javascript"src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script language="javascript" type="text/javascript"src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script>
+    $(document).ready(function () {
+            $('.btn-group .btn').on('click', function () {
+                var selectedId = $(this).attr('id');
+                var contentId = '#content' + selectedId.slice(-1);
+                // Remove 'active' class from all buttons and add to the clicked button
+                $('.btn-group .btn').removeClass('active');
+                $(this).addClass('active');
+                // Hide all content divs and show the selected one
+                $('.content-div').removeClass('active');
+                $(contentId).addClass('active');
+            });
+        });
 
-<script language="javascript" type="text/javascript" src=""></script>
-<script language="javascript" type="text/javascript" src=""></script>
-<script language="javascript" type="text/javascript" src=""></script>
-
+  </script>
 </html>
-
-        
-<script>
-//exibir o video da gifImage na gif-container
-var start = false
-document.getElementById('gif-container').addEventListener('click', function() {
-  const gifImage = document.getElementById('gifImage');
-    gifImage.src = (!start) ? "{{ url_for('static', filename='img/output.gif') }}" : "{{ url_for('static', filename='img/apresenta_estrutura.png') }}";
-  start = !start;
-});  
-
-
-</script>         

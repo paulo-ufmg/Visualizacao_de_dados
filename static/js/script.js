@@ -4,6 +4,11 @@ $(function() {
       $('#sidebarCollapse').on('click', function() {
         $('#sidebar, #content').toggleClass('active');
       });
+     
+      // Alterna as exibições de Gráfico1
+      $(".graf1").on('click', function() {
+        alert("cliquei option grafico");
+      });
 });
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -37,4 +42,37 @@ document.addEventListener('DOMContentLoaded', function () {
     // Opcional: Mostrar a primeira seção por padrão ao carregar a página
     sections[0].classList.add('active');
   }
+
+
+
 });
+/*
+//Alterna as exibições de Gráfico1
+document.addEventListener('DOMContentLoaded', function () {
+  alert(1)
+  var buttons = document.querySelectorAll('input[name="options"]');
+  console.log("opcoes",buttons)
+  var contents = document.querySelectorAll('.content-div');
+  console.log("divs",contents)
+
+  buttons.forEach(function (button) {
+      button.addEventListener('click', function () {
+          alert(2)
+          var selectedOption = this.id;
+          alert(this.id)
+
+          contents.forEach(function (content) {
+              content.classList.remove('active');
+          });
+          document.getElementById('content' + selectedOption.slice(-1)).classList.add('active');
+      });
+  });
+});
+*/
+
+
+  
+
+
+
+
