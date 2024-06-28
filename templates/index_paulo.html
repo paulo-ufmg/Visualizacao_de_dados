@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex"/> <!-- index,follow"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Visualização de Dados">
+    <meta property="og:description" content="Dengue">
+    <meta id="icon" property="og:image" content="{{ url_for('static', filename='img/logo.png') }}">
+    <meta property="og:url" content="https://visualizacao-de-dados.onrender.com/">
+    <title>Dengue Brasil</title>
+
+        <!-- Bootstrap css -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/compile.css') }}">
+
+  </head>
+    <body> <!-- class="bg-light text-dark"-->
+        <div class="vertical-nav bg-white" id="sidebar">
+          <div class="py-4 px-3 mb-4 bg-light">
+            <div id="logo" class="media d-flex align-items-center"><img src="{{ url_for('static', filename='img/logo.png') }}" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+              <div class="media-body">
+                <h4 class="m-0">Dengue Brasil</h4>
+                <p class="font-weight-light text-muted mb-0">Visualização de Dados</p>
+              </div>
+            </div>
+          </div>
+
+          <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">Índice</p>
+
+          <ul class="nav flex-column bg-white mb-0">
+            <li class="nav-item">
+              <a href="#apresentacao" class="nav-link text-dark font-italic bg-light">
+                        <i class="fa fa-align-left mr-3 text-primary fa-fw"></i>
+                        Apresentação
+                    </a>
+            </li>
+            <li class="nav-item">  
+              <a href="#motivacao" class="nav-link text-dark font-italic bg-light">
+                        <i class="fa fa-th mr-3 text-primary fa-fw"></i>
+                        Motivaçao
+                    </a>
+            </li>
+            <li class="nav-item">
+              <a href="#problema" class="nav-link text-dark font-italic bg-light">
+                        <i class="fa fa-table mr-3 text-primary fa-fw"></i>
+                        Problema
+                    </a>
+            </li>
+            <li class="nav-item">
+              <a href="#dataset" class="nav-link text-dark font-italic bg-light">
+                        <i class="fa fa-tasks mr-3 text-primary fa-fw"></i>
+                        DataSet
+                    </a>
+            </li>
+
+          </ul>
+
+          <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">Gráficos</p>
+
+          <ul class="nav flex-column bg-white mb-0">
+            <li class="nav-item">
+              <a href="#grafico1" class="nav-link text-dark font-italic bg-light">
+                <i class="fa fa-line-chart mr-3 text-primary fa-fw"></i>Gráfico 1</a>
+            </li>
+            <li class="nav-item">
+              <a href="#grafico2" class="nav-link text-dark font-italic bg-light">
+                <i class="fa fa-bar-chart mr-3 text-primary fa-fw"></i>Gráfico 2</a>
+            </li>
+            <li class="nav-item">
+              <a href="#grafico3" class="nav-link text-dark font-italic bg-light">
+                <i class="fa fa-area-chart mr-3 text-primary fa-fw"></i>Gráfico 3</a>
+            </li>
+            <li class="nav-item">
+              <a href="#grafico4" class="nav-link text-dark font-italic bg-light">
+                <i class="fa fa-area-chart mr-3 text-primary fa-fw"></i>Mapa de calor</a>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- End vertical navbar -->
+
+
+        <!-- Page content holder -->
+        <div class="page-content p-5" id="content">
+          <!-- Toggle button -->
+          <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold"></small></button>
+
+          <section id="apresentacao"  class="section">
+            <!-- Demo content -->
+            <!-- Autores-->
+            <div id="autores" >
+              <div class="d-flex justify-content-end">
+                
+                  <div class="media d-flex align-items-center"><img src="{{ url_for('static', filename='img/larissa.jpg') }}" alt="..." width="64" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+                    <div class="media-body">
+                      <h4 class="m-0">Larissa Pinheiro</h4>
+                      <p class="font-weight-light text-muted mb-0">lpinheiro00@ufmg.br</p>
+                    </div>
+                  </div>
+                
+
+                
+                  <div class="media d-flex align-items-center"><img src="{{ url_for('static', filename='img/_paulo.png') }}" alt="..." width="64" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+                    <div class="media-body">
+                      <h4 class="m-0">Paulo</h4>
+                      <p class="font-weight-light text-muted mb-0">paulo-rocha@ufmg.br</p>
+                    </div>
+                  </div>    
+                
+                
+                  <div class="media d-flex align-items-center"><img src="{{ url_for('static', filename='img/user.png') }}" alt="..." width="64" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+                    <div class="media-body">
+                      <h4 class="m-0">user</h4>
+                      <p class="font-weight-light text-muted mb-0">user@ufmg.br</p>
+                    </div>
+                  </div>      
+                
+              </div>  
+            </div>
+                
+
+
+
+            <h2 class="display-4">Visualização de Dados - Dengue Brasil</h2>
+            <!--
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="Procurar" aria-label="Recipient's username" aria-describedby="button-addon2">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="button" id="button-addon2"><i class="fa fa-search active" aria-hidden="true" style="color:white"></i></button>
+              </div>
+            </div>
+            -->
+                      <br/><br/><br/>   
+            
+            <p class=" mb-0 mr-10">Este é o resultado de um trabalho dos alunos da disciplina de Visualização de Dados da Pós Graduação do Departamento de Ciência da Computação da UFMG, 2024.</p>
+            <p class="">Código fonte: <a href="https://github.com/paulo-ufmg/Visualizacao_de_dados" class="text-primary" target="_blank">
+                <u>Github</u></a>
+            </p>
+            <div class="separator"></div>
+            <div class="row mr-10">
+              <div class="col-xs-12">
+                <p class=""></p>
+
+                <h5>teste</h5>
+                <p class=""></p>
+
+                <div class="bg-white p-5 rounded my-5 shadow-sm">
+                  <h5>Conclusão</h5>
+                  <p class=" font-italic mb-0"></p>
+                </div>
+                <p class="">
+                </p>
+              </div>
+            </div>
+          </section>  
+
+        
+          <section id="motivacao"  class="section">
+            <h2>Motivação</h2>
+            <p>A dengue, assim como outras arboviroses transmitidas por mosquitos do gênero Aedes, é um problema de caráter endêmico na saúde pública do Brasil. Além da característica endêmica das arboviroses, anualmente várias epidemias e surtos também são registrados regionalmente no território nacional. Essas ocorrências atípicas podem ser correlacionadas com a variação de diversos fatores climáticos, populacionais e sociais, que potencialmente impactam o número de casos observados. Através da obtenção, triagem e visualização dos dados é possível realizar um monitoramento mais efetivo da epidemiologia das arboviroses e através dele realizar previsões e estabelecer estratégias de contenção dessas doenças por meio do controle dos vetores. </p>
+            <p>O Ministério da Saúde mantém, desde 2023, um Painel de Monitoramento das Arboviroses, disponível no URL <a href="https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/a/aedes-aegypti/monitoramento-das-arboviroses">https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/a/aedes-aegypti/monitoramento-das-arboviroses.</a> Essa ferramenta interativa oferece visualizações interessantes acerca de casos de arboviroses, distribuídos principalmente por unidades geográficas e estratos da população. Entretanto, não há registros anteriores a 2023, o que impossibilita traçar uma evolução temporal da situação epidemiológica. Além disso, faltam vários dados importantes para a compreensão da situação como um todo como:</p> 
+            <ul>
+              <li>dados climáticos</li>
+              <li>pluviométricos</li>
+              <li>Vegetação</li>
+              <li>Abrangência das campanhas de controle de vetores</li>
+              <li>Comportamento sazonal, entre outros.</li>
+            </ul>
+
+            <p>Nesse sentido, a proposta desse trabalho é criar visualizações dos dados envolvidos na epidemiologia da dengue, abrangendo fatores que potencialmente impactam na flutuação anual de casos e que estão distribuídos em diversos repositórios de dados, principalmente de levantamentos governamentais.</p>
+<!--
+            <div class="container">
+              <div class="row">
+                  <div class="col-12 col-md-6">
+                      <div class="p-3 border bg-light">
+                        <img src="{{ url_for('static', filename='img/bioprof_logo.png') }}" class="img-fluid float-left mr-3" alt="Example Icon">
+                        
+                  </div>
+                  <div class="col-12 col-md-6">
+                      <div class="p-3 border bg-light">
+                        <img src="{{ url_for('static', filename='img/encadear_logo.png') }}" class="img-fluid  float-left mr-3" alt="Example Icon">
+                  </div>
+              </div>
+          </div>
+-->          
+        
+          </section>
+          <section id="problema" class="section mb-5">
+            <h2>DESCRIÇÃO DO PROBLEMA</h2>
+            <img src="{{ url_for('static', filename='img/bioprof_logo.png') }}" class="img-fluid  mr-3 mb-3" width="360" alt="Example Icon">
+            <p>O controle epidemiológico da dengue, assim como de outras arboviroses, depende da mobilização da população e de agentes governamentais no combate de focos de reprodução do vetor. Para que isso ocorra, é necessário conscientização e capacitação da população e da clara compreensão do padrão epidemiológico da doença. Há uma grande quantidade de dados que são coletados pelos agentes governamentais e da saúde, mas que, no geral, não são devidamente organizados e dispostos de forma tangível para a população leiga. Por isso, a minha proposta para esse trabalho é extrair desses dados informações-chave sobre o assunto e desenvolver visualizações que a tornem clara. Algumas perguntas a serem respondidas são:</p>
+            <ul>
+              <li>Em quais estados brasileiros há maior endemicidade da dengue?</li>
+              <li>Nos últimos 12 anos houve mudança no padrão de endemicidade? É possível entender por que houve essa mudança a partir dos dados disponíveis?</li>
+              <li>Qual o impacto das alterações climáticas dos últimos 12 anos na distribuição geográfica dos casos de dengue?</li>
+              <li>Quais os estratos da população mais atingidos pela dengue (sexo, idade, condição clínica)?</li>
+              <li>É possível traçar uma correlação entre degradação da cobertura vegetal com a alteração nos números dos casos de dengue?</li>
+              <li>Existe correlação entre fenômenos climáticos globais, como aquecimento global, El Niño e La Niña, com a taxa de mudança dos casos de dengue?</li>
+              <li>É possível perceber algum possível viés nos dados disponíveis na amostragem dos casos prováveis de dengue em relação ao número real de casos?</li>
+              <li>Existe alguma anomalia no número de casos de dengue nos últimos 12 anos?</li>
+            </ul>
+
+            <p>As visualizações produzidas serão principalmente baseadas em séries temporais, dado o caráter intrínseco do problema. Essas visualizações pretendem mostrar tendências na evolução dos casos através dos anos, a taxa de mudança anual e sazonal, entre outros. Outras visualizações servirão para mostrar a correlação e distribuição entre variáveis, como por exemplo a faixa etária e sexo e a quantidade de casos prováveis e morte por dengue. </p>
+
+          </section>
+          
+
+          <section id="dataset"   class="section">
+            <h2>BASE DE DADOS</h2>
+            <p>Faremos um trabalho de coleta e triagem dos dados, que será realizado a partir das seguintes fontes que disponibilizam informações sobre as arboviroses no brasil:</p>
+
+            <ul>
+              <li>Dengue in Brazil (2012 – 2021) Drexel DSCI 511<br><small>Project, em <a href="https://www.kaggle.com/datasets/jimmyyyyyyy/dengue-in-brazil-2012-2021" title="https://www.kaggle.com/datasets/jimmyyyyyyy/dengue-in-brazil-2012-2021">kaggle.com</a>,<br>download de arquivos tipo csv.</small></li>
+              <li>Relatório da Situação das Arboviroses em Belo Horizonte - Minas Gerais<br><small>INFO DENGUE <a href="https://info.dengue.mat.br/report/MG/3106200/202414" title="https://info.dengue.mat.br/report/MG/3106200/202414">FGV EMAp</a><br> arquivos acessados por API.</small> </li>
+            </ul>
+
+            <p>Alguns dos dados utilizados, de 2012 a 2021, para cada unidade federativa brasileira, serão:</p>
+            <ul>
+              <li>Unidade Federativa;</li>
+              <li>Temperatura média</li>
+              <li>Temperatura mínima</li>
+              <li>Amplitude térmica</li>
+              <li>Precipitação</li>
+              <li>Número de casos de dengue</li>
+              <li>Área da unidade federativa</li>
+              <li>População</li>
+            </ul>
+
+            <p>O objetivo é reunir os dados relevantes em um arquivo CSV ou, dependendo do desempenho, utilizar consulta a um banco de dados em aplicação. As ferramentas que serão utilizados para a construção das visualizações de dados serão bibliotecas Python, como Matplotlib, Seaborn, Plotly, Bokeh, entre outros. </p>
+          </section>
+
+
+
+          <section id="grafico1" class="section">
+            <h2>Casos de Dengue</h2>
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-secondary active" id="btn1">Brasil</button>
+                <button type="button" class="btn btn-secondary"        id="btn2">Sudeste</button>
+                <button type="button" class="btn btn-secondary"        id="btn3">Barra Sobreposta</button>
+            </div>
+            
+
+            <div class="row">
+              <div id="content1" class="content-div active">
+                <div>{% include 'brasil.html' %}</div>
+              </div>  
+              <div id="content2" class="content-div">
+                <div>{% include 'sudeste.html' %}</div>
+              </div>  
+              <div id="content3" class="content-div">
+                <div>{% include 'bar-sudeste.html' %}</div>
+              </div>  
+            </div>  
+          </section>
+
+          <section id="grafico2"    class="section">
+            <h2>Gráfico Precipitação e Temperatura x Casos </h2>
+  
+            <div class="row">
+                <div class="col-12 col-md-6">
+                      <h4>Preciptação</h4>
+                      <div class="p-3 border bg-light">
+                        {% include 'sudeste(p).html' %}
+                      </div>  
+                </div>      
+                <div class="col-12 col-md-6">
+                        <h2>Temperatura</h2> 
+                        <div class="p-3 border bg-light">
+                          {% include 'sudeste(t).html' %}
+                        </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                  <h2>Casos de Dengue</h2>
+                  <div class="p-3 border bg-light">
+                    {% include 'grafico1.html' %}
+                  </div>
+                </div>
+            </div>
+
+          </section>
+
+          <section id="grafico3"    class="section">
+            <h2 class="text-primary mb-3">Epidemia de Dengue em Belo Horizonte 2024</h2>
+            <div class="row">
+              <div class="col-12 col-md-6">
+                    <h5 class="mt-3">Média das temperaturas máximas diárias ao longo da semana</h5>
+                    <div id="BHtempmax" class="p-3 border bg-light">
+                      {% include 'BHtempmax.html' %}
+                    </div>  
+              </div>      
+              <div class="col-12 col-md-6">
+                      <h5 class="mt-3">Média da umidade relativa máxima diária do ar ao longo da semana</h5> 
+                      <div id="BHumidmax" class="p-3 border bg-light">
+                        {% include 'BHumidmax.html' %}
+                      </div>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-6">
+                <h5 class="mt-3">Número de casos de Dengue notificados por semana</h5>
+                <div id="BHCasosDengue" class="p-3 border bg-light">
+                  {% include 'BHCasosDengue.html' %}
+                </div>
+              </div>
+              <div class="col-6"></div>
+          </div>
+          </section>
+          <section id="grafico4"    class="section">
+            <h2>Gráfico de Calor para Casos </h2>
+  
+            <div class="row">
+                <div class="col-12">
+                      <h4>Região Sudeste</h4>
+                      <div id="sudeste-mapa" class="p-3 border bg-light">
+                        {% include 'sudestee_mapa.html' %}
+                      </div>  
+                </div>      
+                <div class="col-12">
+                        <h2>Região Nordeste</h2> 
+                        <div id="nordeste_mapa" class="p-3 border bg-light">
+                          {% include 'nordeste_mapa.html' %}
+                        </div>
+                </div>
+            </div>
+          </section>
+          
+          
+
+        </div>
+        <!-- End demo content -->
+<!-- Estrutura da Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-primary" id="exampleModalLabel"><img src="{{ url_for('static', filename='img/pythonlogo.png') }}" width="32" class="img-fluid" alt="Example Icon">Compilador Python <span class="text-info" id="nome_metodo"></span></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="compilador" data-code="">
+          <textarea id="ide" placeholder="# Insira seu código aqui" spellcheck="false">from Bioclass import Bioprof</textarea><br>
+          <button id="run" type="button" title="Executa código Python">Executar</button>
+          <button id="clear" type="button" title="Apaga o terminal de resultado">Limpar</button>
+          <div id="result">
+            <span class="text-success"><pre>Resultado&raquo;</pre></span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <!-- <button type="button" class="btn btn-primary">Salvar mudanças</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Estrutura da Modal bio-->
+<div class="modal fade" id="bioModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-primary" id="exampleModalLabel"><img src="{{ url_for('static', filename='img/biologo.png') }}" width="32" class="img-fluid" alt="Example Icon"> Biologia - O que é?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="bio" data-code="">
+          <h5>O que é?</h5>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <!-- <button type="button" class="btn btn-primary">Salvar mudanças</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+        
+  </body>
+  <script language="javascript" type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+  <script language="javascript" type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+  <script language="javascript" type="text/javascript"src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script>
+    $(document).ready(function () {
+            $('.btn-group .btn').on('click', function () {
+                var selectedId = $(this).attr('id');
+                var contentId = '#content' + selectedId.slice(-1);
+                // Remove 'active' class from all buttons and add to the clicked button
+                $('.btn-group .btn').removeClass('active');
+                $(this).addClass('active');
+                // Hide all content divs and show the selected one
+                $('.content-div').removeClass('active');
+                $(contentId).addClass('active');
+            });
+        });
+
+  </script>
+</html>
